@@ -5,7 +5,7 @@ import InputBase from '@mui/material/InputBase';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
-  width: '50vw',
+  width: '100%',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   '&:hover': {
@@ -37,7 +37,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '50%',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },

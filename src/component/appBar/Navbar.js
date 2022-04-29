@@ -8,28 +8,69 @@ import SearchBar from '../searchBar/Search';
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
   display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  padding: 20,
+  //   for lg, large: 1200px
+  [theme.breakpoints.down('lg')]: {
+    flexWrap: 'wrap',
+    textAlign: 'center',
+    padding: 10,
+  },
+  //   for md, medium: 900px
+  [theme.breakpoints.down('md')]: {
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    padding: 3,
+  },
+  //   for sm, small: 600px
+
+  [theme.breakpoints.down('sm')]: {
+    flexWrap: 'wrap',
+    padding: 1,
+  },
 }));
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
+  width: '10vw',
+  textAlign: 'center',
+  padding: 2,
 }));
 const NavbarItem = styled(Box)(({ theme }) => ({
   display: 'flex',
+  justifyContent: 'space-between',
+  width: '20vw',
+  textAlign: 'center',
+}));
+const SearchBarInput = styled(Box)(({ theme }) => ({
+  width: '60vw',
+  [theme.breakpoints.down('md')]: {
+    width: '40vw',
+  },
 }));
 export default function Navbar() {
   return (
     <AppBarStyle>
       <Logo className="logo">
         <StoreIcon fontSize="large" />
-        <Typography>eShop</Typography>
+        <Typography variant="h5" component="h2">
+          eShop
+        </Typography>
       </Logo>
-
-      <SearchBar />
+      <SearchBarInput className="searchBar">
+        <SearchBar />
+      </SearchBarInput>
 
       <NavbarItem className="nav" component="nav">
-        <Typography>Hello Guest Sign in</Typography>
+        <Box>
+          <Typography>Hello Guest </Typography>
+          <Typography>Sign in</Typography>
+        </Box>
         <Typography>your Shop</Typography>
-        <AddShoppingCartIcon fontSize="large" />
-        <span>0</span>
+        <Box>
+          <AddShoppingCartIcon fontSize="large" />
+          <span>0</span>
+        </Box>
       </NavbarItem>
     </AppBarStyle>
   );
