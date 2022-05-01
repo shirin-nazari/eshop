@@ -5,6 +5,7 @@ import ImageTwo from '../assets/6508430.jpg';
 import ImageThree from '../assets/3255317.jpg';
 import 'react-awesome-slider/dist/styles.css';
 import Card from '../component/card/Card';
+import Product from './Product';
 const styles = {
   marginTop: '5rem',
 };
@@ -17,10 +18,7 @@ function Home() {
         <div data-src={ImageTwo} />
         <div data-src={ImageThree} />
       </AwesomeSlider>
-      <section>
-        <Card /> <Card />
-        <Card /> <Card />
-      </section>
+      <Product />
     </section>
   );
 }
