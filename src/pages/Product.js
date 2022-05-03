@@ -1,7 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { Box, display } from '@mui/system';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '../component/card/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../redux/data/dataSlice';
 const BoxCard = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
@@ -10,12 +12,29 @@ const BoxCard = styled(Box)(({ theme }) => ({
   margin: 6,
 }));
 function Product() {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
+  console.log(data.data);
+  useEffect(() => {
+    dispatch(fetchData());
+  }, []);
   return (
     <>
       <BoxCard>
-        <Card />
-        <Card />
-        <Card /> <Card /> <Card /> <Card /> <Card /> <Card />
+        {data.data.map(
+          ({ category, id, description, image, price, rating }) => {
+            return (
+              <Card
+                key={id}
+                imageSrc={image}
+                title={category}
+                textDescription={description}
+                price={price}
+                rating={rating.rate}
+              />
+            );
+          }
+        )}
       </BoxCard>
     </>
   );
