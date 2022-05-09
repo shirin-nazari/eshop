@@ -31,19 +31,24 @@ export default function MultiActionAreaCard({
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ display: 'flex' }}
+          >
             {/* {Array(rating)
               .fill()
               .map((_, item) => (
                 <p key={id}>⭐</p>
               ))} */}
-            {[rating].map((_, item) => (
-              <p key={id}>⭐</p>
-            ))}
-            {/* { for(let i=0;i<=rating;i++){
-    (<p>⭐</p>)
-  }} */}
-            {/* {rating ? <p>{rating*(⭐)}</p> : null} */}
+            {/* {rating} */}
+            {('' + rating)
+              .split('')
+              .fill()
+              .map((_, item) => (
+                <p key={id}>⭐</p>
+              ))}
           </Typography>
           <Typography gutterBottom variant="h5" component="div">
             ${price}
