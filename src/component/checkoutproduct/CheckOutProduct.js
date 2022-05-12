@@ -1,8 +1,9 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
+import Button from '../button/Button';
 const styledImage = {
-  width: '30%',
-  height: '50%',
+  width: '20%',
+  height: '30%',
 };
 function CheckOutProduct() {
   return (
@@ -10,6 +11,8 @@ function CheckOutProduct() {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
+        width: '100%',
+        padding: 2,
       }}
     >
       <img
@@ -17,15 +20,19 @@ function CheckOutProduct() {
         src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
         alt="title"
       />
-      <div className="product__info">
-        <h5>"men's clothing"</h5>
-        <p>
+      <Box className="product__info" sx={{ margin: 2, paddingTop: 5 }}>
+        <Typography variant="h4" component="h5">
+          "men's clothing"
+        </Typography>
+        <Typography variant="body2" component="body">
           Your perfect pack for everyday use and walks in the forest. Stash your
           laptop (up to 15 inches) in the padded sleeve, your everyday
-        </p>
-        <h6>$109.95</h6>
-        <button>Remove from basket</button>
-      </div>
+        </Typography>
+        <Typography variant="h6" component="h6">
+          $109.95
+        </Typography>
+        <Button variant="contained">Remove from basket</Button>
+      </Box>
     </Box>
   );
 }
