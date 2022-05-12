@@ -43,10 +43,11 @@ export default function MultiActionAreaCard({
                 <p key={id}>⭐</p>
               ))} */}
             {/* {rating} */}
+
             {('' + rating)
               .split('')
               .fill()
-              .map((_, item) => (
+              .map(() => (
                 <p key={id}>⭐</p>
               ))}
           </Typography>

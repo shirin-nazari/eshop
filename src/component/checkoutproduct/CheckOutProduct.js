@@ -1,11 +1,21 @@
+import { Box } from '@mui/material';
 import React from 'react';
-
+const styledImage = {
+  width: '30%',
+  height: '50%',
+};
 function CheckOutProduct() {
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+      }}
+    >
       <img
+        style={styledImage}
         src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        alt=""
+        alt="title"
       />
       <div className="product__info">
         <h5>"men's clothing"</h5>
@@ -14,8 +24,9 @@ function CheckOutProduct() {
           laptop (up to 15 inches) in the padded sleeve, your everyday
         </p>
         <h6>$109.95</h6>
+        <button>Remove from basket</button>
       </div>
-    </div>
+    </Box>
   );
 }
 
