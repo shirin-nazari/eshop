@@ -4,6 +4,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
+import { Link } from 'react-router-dom';
 
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
@@ -35,6 +36,8 @@ const Logo = styled(Box)(({ theme }) => ({
   width: '10vw',
   textAlign: 'center',
   padding: 2,
+  color: 'white',
+  textDecorationLine: 'none',
 }));
 const NavbarItem = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -51,12 +54,15 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
 export default function Navbar() {
   return (
     <AppBarStyle>
-      <Logo className="logo">
-        <StoreIcon fontSize="large" />
-        <Typography variant="h5" component="h2">
-          eShop
-        </Typography>
-      </Logo>
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <Logo className="logo">
+          <StoreIcon fontSize="large" />
+          <Typography variant="h5" component="h2">
+            eShop
+          </Typography>
+        </Logo>
+      </Link>
+
       <SearchBarInput className="searchBar">
         <SearchBar />
       </SearchBarInput>
@@ -67,10 +73,12 @@ export default function Navbar() {
           <Typography>Sign in</Typography>
         </Box>
         <Typography>your Shop</Typography>
-        <Box>
-          <AddShoppingCartIcon fontSize="large" />
-          <span>0</span>
-        </Box>
+        <Link to="/checkout">
+          <Box color="white">
+            <AddShoppingCartIcon fontSize="large" />
+            <span>0</span>
+          </Box>
+        </Link>
       </NavbarItem>
     </AppBarStyle>
   );

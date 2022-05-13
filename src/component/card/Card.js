@@ -5,19 +5,25 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 import Button from '../button/Button';
+import { styled } from '@mui/material/styles';
+const CardStyle = styled(Card)(() => ({
+  marginTop: 50,
+}));
 export default function MultiActionAreaCard({
   title,
   imageSrc,
   textDescription,
   id,
   rating,
+  price,
 }) {
   return (
-    <Card sx={{ width: '30vw' }}>
+    <CardStyle sx={{ width: '30vw' }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="30%"
+          width="30%"
           image={imageSrc}
           alt="green iguana"
         />
@@ -25,15 +31,31 @@ export default function MultiActionAreaCard({
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {textDescription}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="div">
-            {Array(rating)
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            sx={{ display: 'flex' }}
+          >
+            {/* {Array(rating)
               .fill()
               .map((_, item) => (
                 <p key={id}>⭐</p>
+              ))} */}
+            {/* {rating} */}
+
+            {('' + rating)
+              .split('')
+              .fill()
+              .map(() => (
+                <p key={id}>⭐</p>
               ))}
+          </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            ${price}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {textDescription}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -41,6 +63,6 @@ export default function MultiActionAreaCard({
         {/* // add Button */}
         <Button variant="contained">Add to Card</Button>
       </CardActions>
-    </Card>
+    </CardStyle>
   );
 }
