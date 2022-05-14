@@ -6,10 +6,12 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 import Button from '../button/Button';
 import { styled } from '@mui/material/styles';
+import { addBasket } from '../../redux/addToBasket/AddToBasketSlice';
+import { useDispatch } from 'react-redux';
 const CardStyle = styled(Card)(() => ({
   marginTop: 50,
 }));
-export default function MultiActionAreaCard({
+function MultiActionAreaCard({
   title,
   imageSrc,
   textDescription,
@@ -17,6 +19,7 @@ export default function MultiActionAreaCard({
   rating,
   price,
 }) {
+  const dispatch = useDispatch();
   return (
     <CardStyle sx={{ width: '30vw' }}>
       <CardActionArea>
@@ -61,8 +64,20 @@ export default function MultiActionAreaCard({
       </CardActionArea>
       <CardActions>
         {/* // add Button */}
-        <Button variant="contained">Add to Card</Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            // for add in basket
+            dispatch(
+              addBasket({ title, imageSrc, textDescription, id, rating, price })
+            );
+          }}
+        >
+          Add to Card
+        </Button>
       </CardActions>
     </CardStyle>
   );
 }
+
+export default MultiActionAreaCard;

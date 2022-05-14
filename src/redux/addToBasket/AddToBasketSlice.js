@@ -4,8 +4,8 @@ const AddBasket = createSlice({
   name: 'basket',
   initialState: [],
   reducers: {
-    addBasket(state, { payload: { item } }) {
-      state.push(...state.basket, item);
+    addBasket(state, { payload }) {
+      state.push(payload);
     },
     deleteBasket(state, { payload: id }) {
       state.slice(id, 1);

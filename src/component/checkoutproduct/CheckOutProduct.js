@@ -7,42 +7,47 @@ const styledImage = {
   width: '20%',
   height: '30%',
 };
-function CheckOutProduct({ category, id, description, image, price, rating }) {
+function CheckOutProduct() {
   const dispatch = useDispatch();
-  const addToBasket = useSelector((state) => state.basket);
- 
+  const Basket = useSelector((state) => state.basket);
+  console.log(Basket);
+
   return (
-    { addToBasket.map(index=>(
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        width: '100%',
-        padding: 2,
-      }}
-    >
-      <img
-        style={styledImage}
-        src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        alt="title"
-      />
-      <Box className="product__info" sx={{ margin: 2, paddingTop: 5 }}>
-        <Typography variant="h4" component="h5">
-          "men's clothing"
-        </Typography>
-        <Typography variant="body2" component="body">
-          Your perfect pack for everyday use and walks in the forest. Stash your
-          laptop (up to 15 inches) in the padded sleeve, your everyday
-        </Typography>
-        <Typography variant="h6" component="h6">
-          $109.95
-        </Typography>
-        <Button variant="contained" onClick={() => dispatch(deleteBasket(id))}>
-          Remove from basket
-        </Button>
-      </Box>
-    </Box>
-    ))}
+    <>
+      {Basket &&
+        Basket.map(
+          ({ title, imageSrc, textDescription, rating, price }, index) => (
+            <Box
+              key={index}
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                width: '100%',
+                padding: 2,
+              }}
+            >
+              <img style={styledImage} src={imageSrc} alt={title} />
+              <Box className="product__info" sx={{ margin: 2, paddingTop: 5 }}>
+                <Typography variant="h4" component="h5">
+                  {title}
+                </Typography>
+                <Typography variant="body2" component="body">
+                  {textDescription}
+                </Typography>
+                <Typography variant="h6" component="h6">
+                  ${price}
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch(deleteBasket(index))}
+                >
+                  Remove from basket
+                </Button>
+              </Box>
+            </Box>
+          )
+        )}
+    </>
   );
 }
 
