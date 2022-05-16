@@ -13,7 +13,7 @@ function CheckOutProduct() {
   console.log(Basket);
 
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       {Basket &&
         Basket.map(
           ({ title, imageSrc, textDescription, rating, price }, index) => (
@@ -47,7 +47,7 @@ function CheckOutProduct() {
             </Box>
           )
         )}
-    </>
+    </Box>
   );
 }
 
