@@ -10,8 +10,11 @@ const AddBasket = createSlice({
     deleteBasket(state, { payload: index }) {
       state.splice(index, 1);
     },
+    // getBasketTotal(state, { payload: basket }) {
+    //   state.basket?.reduce((amount, item) => item.price + amount, 0);
+    // },
   },
 });
 
-export const { addBasket, deleteBasket } = AddBasket.actions;
+export const { addBasket, deleteBasket, getBasketTotal } = AddBasket.actions;
 export default AddBasket.reducer;
