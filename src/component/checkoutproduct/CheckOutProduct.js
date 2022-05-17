@@ -27,7 +27,10 @@ function CheckOutProduct() {
               }}
             >
               <img style={styledImage} src={imageSrc} alt={title} />
-              <Box className="product__info" sx={{ margin: 2, paddingTop: 5 }}>
+              <Box
+                className="product__info"
+                sx={{ margin: 2, paddingTop: 5, width: '65%' }}
+              >
                 <Typography variant="h4" component="h5">
                   {title}
                 </Typography>
