@@ -7,8 +7,8 @@ const AddBasket = createSlice({
     addBasket(state, { payload }) {
       state.push(payload);
     },
-    deleteBasket(state, { payload: id }) {
-      state.slice(id, 1);
+    deleteBasket(state, { payload: index }) {
+      state.splice(index, 1);
     },
   },
 });
