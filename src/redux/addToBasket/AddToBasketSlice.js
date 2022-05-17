@@ -10,9 +10,9 @@ const AddBasket = createSlice({
     deleteBasket(state, { payload: index }) {
       state.splice(index, 1);
     },
-    // getBasketTotal(state, { payload: basket }) {
-    //   state.basket?.reduce((amount, item) => item.price + amount, 0);
-    // },
+    getBasketTotal(state, { payload: basket }) {
+      state?.reduce((amount, basket) => basket.price + amount, 0);
+    },
   },
 });
 
