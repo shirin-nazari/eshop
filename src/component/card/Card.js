@@ -40,13 +40,6 @@ function MultiActionAreaCard({
             component="div"
             sx={{ display: 'flex' }}
           >
-            {/* {Array(rating)
-              .fill()
-              .map((_, item) => (
-                <p key={id}>⭐</p>
-              ))} */}
-            {/* {rating} */}
-
             {('' + rating)
               .split('')
               .fill()
