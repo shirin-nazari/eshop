@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import StoreIcon from '@mui/icons-material/Store';
 import TextFields from '../component/textField/TextField';
-import Buttons from '../component/button/Button';
+import Button from '../component/button/Button';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
@@ -12,14 +12,14 @@ const Logo = styled(Box)(({ theme }) => ({
   width: '10vw',
   textAlign: 'center',
   padding: 2,
-  color: 'white',
+  color: 'black',
   textDecorationLine: 'none',
 }));
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
-    <div>
+    <div style={{ margin: '8rem', textAlign: 'center' }}>
       <Link to="/" style={{ textDecoration: 'none' }}>
         <Logo className="logo">
           <StoreIcon fontSize="large" />
@@ -28,18 +28,25 @@ export default function Login() {
           </Typography>
         </Logo>
       </Link>
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <Typography component="h2" variant="h2">
           SIGN IN
         </Typography>
-        <form>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            margin: 10,
+            padding: 10,
+          }}
+        >
           <TextFields
             nameInput="email"
             handleChange={(e) => setEmail(e.target.value)}
             valueInput={email}
             variantInput="filled"
             typeInput="email"
-            sx={{ padding: 1 }}
+            sx={{ padding: 20, margin: 5 }}
             placeholderInput="please your email"
             labelInput="email"
             idInput={1}
@@ -50,19 +57,19 @@ export default function Login() {
             valueInput={password}
             variantInput="filled"
             typeInput="password"
-            sx={{ padding: 1 }}
+            sx={{ padding: 40, margin: 5 }}
             placeholderInput="please your password"
             labelInput="password"
             idInput={2}
           />
-          <Buttons variant="filled">Sign In</Buttons>
+          <Button variant="filled">Sign In</Button>
           <p>
             By signing-in you agree to the eShop Website Conditions of Use &
             Sale. Please see our Privacy Notice, our Cookies Notice and our
             Interest-Based Ads Notice.
           </p>
-          <Buttons variant="filled">Create your eShop Account</Buttons>
-        </form>
+          <Button variant="filled">Create your eShop Account</Button>
+        </div>
       </div>
     </div>
   );
