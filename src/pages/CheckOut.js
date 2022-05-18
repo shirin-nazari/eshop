@@ -3,7 +3,7 @@ import React from 'react';
 import CheckOutProduct from '../component/checkoutproduct/CheckOutProduct';
 import Subtotal from '../component/subtotal/Subtotal';
 const styles = {
-  margin: '8rem',
+  margin: '2rem',
 };
 function CheckOut() {
   return (
