@@ -9,6 +9,7 @@ const AddBasket = createSlice({
     },
     deleteBasket(state, { payload: index }) {
       state.splice(index, 1);
+      // state.findIndex((item) => item.id === index.id);
     },
   },
 });

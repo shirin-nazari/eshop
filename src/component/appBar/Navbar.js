@@ -1,11 +1,11 @@
 import { AppBar, Box, Typography } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import React, { useState } from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
@@ -74,10 +74,13 @@ export default function Navbar() {
       </SearchBarInput>
 
       <NavbarItem className="nav" component="nav">
-        <Box>
-          <Typography>Hello Guest </Typography>
-          <Typography>Sign in</Typography>
-        </Box>
+        <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
+          <Box>
+            <Typography>Hello Guest </Typography>
+            <Typography>Sign in</Typography>
+          </Box>
+        </Link>
+
         <Typography>your Shop</Typography>
         <Link to="/checkout">
           <Box color="white">
