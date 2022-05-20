@@ -6,6 +6,7 @@ import Button from '../component/button/Button';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
+import { auth } from './Firebase';
 
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -36,8 +37,9 @@ export default function Login() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            margin: 10,
-            padding: 11,
+            margin: 5,
+            padding: 4,
+            textAlign: 'center',
           }}
         >
           <TextFields
@@ -46,7 +48,7 @@ export default function Login() {
             valueInput={email}
             variantInput="filled"
             typeInput="email"
-            sx={{ padding: 20, margin: 5 }}
+            styleInput={{ margin: 2 }}
             placeholderInput="please your email"
             labelInput="email"
             idInput={1}
@@ -57,18 +59,28 @@ export default function Login() {
             valueInput={password}
             variantInput="filled"
             typeInput="password"
-            sx={{ padding: 40, margin: 5 }}
+            styleInput={{ margin: 2 }}
             placeholderInput="please your password"
             labelInput="password"
             idInput={2}
           />
-          <Button variant="filled">Sign In</Button>
+          <Button
+            variant="contained"
+            extraStyle={{ width: '10%', marginLeft: 60 }}
+          >
+            Sign In
+          </Button>
           <p>
             By signing-in you agree to the eShop Website Conditions of Use &
             Sale. Please see our Privacy Notice, our Cookies Notice and our
             Interest-Based Ads Notice.
           </p>
-          <Button variant="filled">Create your eShop Account</Button>
+          <Button
+            variant="contained"
+            extraStyle={{ width: '30%', marginLeft: 50 }}
+          >
+            Create your eShop Account
+          </Button>
         </div>
       </div>
     </div>
