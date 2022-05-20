@@ -4,11 +4,12 @@ const AddBasket = createSlice({
   name: 'basket',
   initialState: [],
   reducers: {
-    addBasket(state, { payload: { item } }) {
-      state.push(...state.basket, item);
+    addBasket(state, { payload }) {
+      state.push(payload);
     },
-    deleteBasket(state, { payload: id }) {
-      state.slice(id, 1);
+    deleteBasket(state, { payload: index }) {
+      state.splice(index, 1);
+      // state.findIndex((item) => item.id === index.id);
     },
   },
 });

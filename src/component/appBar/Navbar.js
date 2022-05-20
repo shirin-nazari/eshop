@@ -5,6 +5,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
@@ -52,6 +53,11 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
   },
 }));
 export default function Navbar() {
+  // const [number, setNumber] = useState(0);
+  const basket = useSelector((state) => state.basket);
+  // const onClick = () => {
+  //   setNumber(basket.length);
+  // };
   return (
     <AppBarStyle>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -68,15 +74,18 @@ export default function Navbar() {
       </SearchBarInput>
 
       <NavbarItem className="nav" component="nav">
-        <Box>
-          <Typography>Hello Guest </Typography>
-          <Typography>Sign in</Typography>
-        </Box>
+        <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
+          <Box>
+            <Typography>Hello Guest </Typography>
+            <Typography>Sign in</Typography>
+          </Box>
+        </Link>
+
         <Typography>your Shop</Typography>
         <Link to="/checkout">
           <Box color="white">
             <AddShoppingCartIcon fontSize="large" />
-            <span>0</span>
+            <span>{basket.length}</span>
           </Box>
         </Link>
       </NavbarItem>

@@ -1,29 +1,28 @@
 import React from 'react';
-import NumberFormat from 'react-number-format';
-function Subtotal() {
-  return (
-    <div className="subtotal">
-      <NumberFormat
-        renderText={(value) => (
-          <>
-            <p>
-              {/* Subtotal ({basket.length} items): <strong>${value}</strong> */}
-              subtotal
-            </p>
-            <small className="subtotal__gift">
-              <input type="checkbox" /> This order contains a gift
-            </small>
-          </>
-        )}
-        prefix={'$'}
-        decimalScale={2}
-        // value={getBasketTotal(basket)}
-        value={'ffff'}
-        displayType={'text'}
-        thousandSeparator={true}
-      />
+import { useSelector } from 'react-redux';
 
-      <button>Proceed to Checkout</button>
+import Button from '../button/Button';
+const styles = {
+  background: '#F8B400',
+  padding: 5,
+  borderRadius: '4px ',
+  margin: 4,
+};
+function Subtotal() {
+  const basket = useSelector((state) => state.basket);
+
+  return (
+    <div className="subtotal" style={styles}>
+      <p>
+        Subtotal ({basket.length} items):$
+        <strong>
+          {basket?.reduce((amount, item) => item.price + amount, 0)}
+        </strong>
+      </p>
+      <small className="subtotal__gift">
+        <input type="checkbox" /> This order contains a gift
+      </small>
+      <Button variant="contained">Proceed to Checkout</Button>
     </div>
   );
 }
