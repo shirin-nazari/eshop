@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import StoreIcon from '@mui/icons-material/Store';
 import TextFields from '../component/textField/TextField';
 import Button from '../component/button/Button';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
-import { auth } from './Firebase';
+import { auth } from './firebase';
 
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -17,8 +17,28 @@ const Logo = styled(Box)(({ theme }) => ({
   textDecorationLine: 'none',
 }));
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const signIn = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        navigate.push('/');
+      })
+      .catch((err) => alert(err.massage));
+  };
+  const register = (e) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) navigate.push('/');
+      })
+      .catch((err) => alert(err.massage));
+  };
   return (
     <div style={{ margin: '8rem', textAlign: 'center' }}>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -67,6 +87,7 @@ export default function Login() {
           <Button
             variant="contained"
             extraStyle={{ width: '10%', marginLeft: 60 }}
+            handleClick={signIn}
           >
             Sign In
           </Button>
@@ -78,6 +99,7 @@ export default function Login() {
           <Button
             variant="contained"
             extraStyle={{ width: '30%', marginLeft: 50 }}
+            handleClick={register}
           >
             Create your eShop Account
           </Button>
