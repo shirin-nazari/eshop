@@ -5,7 +5,7 @@ import Subtotal from '../component/subtotal/Subtotal';
 const styles = {
   margin: '2rem',
 };
-function CheckOut() {
+function Checkout() {
   return (
     <Box sx={{ display: 'flex', marginTop: '8rem' }}>
       <div style={styles}>
@@ -21,4 +21,4 @@ function CheckOut() {
   );
 }
 
-export default CheckOut;
+export default Checkout;

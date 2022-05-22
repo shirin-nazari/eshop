@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import StoreIcon from '@mui/icons-material/Store';
 import TextFields from '../component/textField/TextField';
 import Button from '../component/button/Button';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
+import { auth } from './firebase';
 
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -16,8 +17,28 @@ const Logo = styled(Box)(({ theme }) => ({
   textDecorationLine: 'none',
 }));
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const signIn = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        navigate.push('/');
+      })
+      .catch((err) => alert(err.massage));
+  };
+  const register = (e) => {
+    e.preventDefault();
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) navigate.push('/');
+      })
+      .catch((err) => alert(err.massage));
+  };
   return (
     <div style={{ margin: '8rem', textAlign: 'center' }}>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -36,8 +57,9 @@ export default function Login() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            margin: 10,
-            padding: 11,
+            margin: 5,
+            padding: 4,
+            textAlign: 'center',
           }}
         >
           <TextFields
@@ -46,7 +68,7 @@ export default function Login() {
             valueInput={email}
             variantInput="filled"
             typeInput="email"
-            sx={{ padding: 20, margin: 5 }}
+            styleInput={{ margin: 2 }}
             placeholderInput="please your email"
             labelInput="email"
             idInput={1}
@@ -57,18 +79,30 @@ export default function Login() {
             valueInput={password}
             variantInput="filled"
             typeInput="password"
-            sx={{ padding: 40, margin: 5 }}
+            styleInput={{ margin: 2 }}
             placeholderInput="please your password"
             labelInput="password"
             idInput={2}
           />
-          <Button variant="filled">Sign In</Button>
+          <Button
+            variant="contained"
+            extraStyle={{ width: '10%', marginLeft: 60 }}
+            handleClick={signIn}
+          >
+            Sign In
+          </Button>
           <p>
             By signing-in you agree to the eShop Website Conditions of Use &
             Sale. Please see our Privacy Notice, our Cookies Notice and our
             Interest-Based Ads Notice.
           </p>
-          <Button variant="filled">Create your eShop Account</Button>
+          <Button
+            variant="contained"
+            extraStyle={{ width: '30%', marginLeft: 50 }}
+            handleClick={register}
+          >
+            Create your eShop Account
+          </Button>
         </div>
       </div>
     </div>
