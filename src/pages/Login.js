@@ -6,7 +6,6 @@ import Button from '../component/button/Button';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
-import { auth } from './firebase';
 
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -22,22 +21,22 @@ export default function Login() {
   const [password, setPassword] = useState('');
 
   const signIn = (e) => {
-    e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        navigate.push('/');
-      })
-      .catch((err) => alert(err.massage));
+    // e.preventDefault();
+    // auth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then((auth) => {
+    //     navigate.push('/');
+    //   })
+    //   .catch((err) => alert(err.massage));
   };
   const register = (e) => {
-    e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        if (auth) navigate.push('/');
-      })
-      .catch((err) => alert(err.massage));
+    // e.preventDefault();
+    // auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((auth) => {
+    //     if (auth) navigate.push('/');
+    //   })
+    //   .catch((err) => alert(err.massage));
   };
   return (
     <div style={{ margin: '8rem', textAlign: 'center' }}>
