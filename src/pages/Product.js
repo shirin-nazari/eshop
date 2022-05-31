@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Box, display } from '@mui/system';
+import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import Card from '../component/card/Card';
 import { useDispatch, useSelector } from 'react-redux';
