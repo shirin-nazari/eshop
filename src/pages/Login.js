@@ -6,7 +6,8 @@ import Button from '../component/button/Button';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { registerStore, loginStore } from '../redux/login/LoginSlice';
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
   width: '10vw',
