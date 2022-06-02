@@ -4,8 +4,8 @@ const LoginUser = createSlice({
   name: 'login',
   initialState: [],
   reducers: {
-    registerStore(state, { payload }) {
-      state.push(payload);
+    registerStore(state, { payload: email, payload: password }) {
+      state.push(email, password);
     },
     loginStore(state, { payload }) {
       state.find((item) => item === payload);

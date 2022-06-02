@@ -17,21 +17,27 @@ const Logo = styled(Box)(({ theme }) => ({
   textDecorationLine: 'none',
 }));
 export default function Login() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.login);
 
   const signIn = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+    dispatch(registerStore(email, password));
+    navigate.push('/');
     // auth
     //   .signInWithEmailAndPassword(email, password)
     //   .then((auth) => {
     //     navigate.push('/');
     //   })
+
     //   .catch((err) => alert(err.massage));
   };
   const register = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+
     // auth
     //   .createUserWithEmailAndPassword(email, password)
     //   .then((auth) => {
