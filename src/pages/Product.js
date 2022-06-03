@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Box, display } from '@mui/system';
+import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import Card from '../component/card/Card';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,27 +14,25 @@ const BoxCard = styled(Box)(({ theme }) => ({
 function Product() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
-  console.log(data.data);
+  console.log(data);
   useEffect(() => {
     dispatch(fetchData());
   }, []);
   return (
     <>
       <BoxCard>
-        {data.data.map(
-          ({ category, id, description, image, price, rating }) => {
-            return (
-              <Card
-                key={id}
-                imageSrc={image}
-                title={category}
-                textDescription={description}
-                price={price}
-                rating={rating.rate}
-              />
-            );
-          }
-        )}
+        {data.map(({ category, id, description, image, price, rating }) => {
+          return (
+            <Card
+              key={id}
+              imageSrc={image}
+              title={category}
+              textDescription={description}
+              price={price}
+              rating={rating.rate}
+            />
+          );
+        })}
       </BoxCard>
     </>
   );

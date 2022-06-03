@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import StoreIcon from '@mui/icons-material/Store';
 import TextFields from '../component/textField/TextField';
 import Button from '../component/button/Button';
-import { Typography } from '@mui/material';
+import { Alert, AlertTitle, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
-import { auth } from './firebase';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { registerStore, loginStore } from '../redux/login/LoginSlice';
 const Logo = styled(Box)(({ theme }) => ({
   display: 'flex',
   width: '10vw',
@@ -17,27 +17,37 @@ const Logo = styled(Box)(({ theme }) => ({
   textDecorationLine: 'none',
 }));
 export default function Login() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.login);
+  const authorization = {
+    email,
+    password,
+  };
   const signIn = (e) => {
     e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => {
-        navigate.push('/');
-      })
-      .catch((err) => alert(err.massage));
+    dispatch(loginStore(authorization));
+    navigate('/');
+    // auth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then((auth) => {
+    //     navigate.push('/');
+    //   })
+
+    //   .catch((err) => alert(err.massage));
   };
   const register = (e) => {
     e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((auth) => {
-        if (auth) navigate.push('/');
-      })
-      .catch((err) => alert(err.massage));
+    dispatch(registerStore(authorization));
+
+    // auth
+    //   .createUserWithEmailAndPassword(email, password)
+    //   .then((auth) => {
+    //     if (auth) navigate.push('/');
+    //   })
+    //   .catch((err) => alert(err.massage));
   };
   return (
     <div style={{ margin: '8rem', textAlign: 'center' }}>
@@ -71,7 +81,7 @@ export default function Login() {
             styleInput={{ margin: 2 }}
             placeholderInput="please your email"
             labelInput="email"
-            idInput={1}
+            // idInput={}
           />
           <TextFields
             nameInput="password"
@@ -82,7 +92,7 @@ export default function Login() {
             styleInput={{ margin: 2 }}
             placeholderInput="please your password"
             labelInput="password"
-            idInput={2}
+            // idInput={2}
           />
           <Button
             variant="contained"
@@ -90,6 +100,12 @@ export default function Login() {
             handleClick={signIn}
           >
             Sign In
+            {auth === email ? (
+              <Alert severity="success">
+                <AlertTitle>Success</AlertTitle>
+                welcome in my website — <strong>{email}check it out!</strong>
+              </Alert>
+            ) : null}
           </Button>
           <p>
             By signing-in you agree to the eShop Website Conditions of Use &
