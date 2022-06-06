@@ -1,7 +1,7 @@
 import { AppBar, Box, Typography } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
 import { Link } from 'react-router-dom';
@@ -54,10 +54,19 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
 }));
 export default function Navbar() {
   // const [number, setNumber] = useState(0);
+  const [searchResult, setSearchResult] = useState('');
   const basket = useSelector((state) => state.basket);
+  const data = useSelector((state) => state.data);
   // const onClick = () => {
   //   setNumber(basket.length);
   // };
+  const handleSearch = () => {
+    const searchen = data.data.filter((item) =>
+      item.title.includes(searchResult)
+    );
+    console.log(searchen);
+  };
+
   return (
     <AppBarStyle>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -70,7 +79,13 @@ export default function Navbar() {
       </Link>
 
       <SearchBarInput className="searchBar">
-        <SearchBar />
+        <SearchBar
+          valueInput={searchResult}
+          onChangeInput={(e) => {
+            setSearchResult(e.target.value);
+            handleSearch();
+          }}
+        />
       </SearchBarInput>
 
       <NavbarItem className="nav" component="nav">
