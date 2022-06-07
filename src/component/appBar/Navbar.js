@@ -52,7 +52,7 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
     width: '40vw',
   },
 }));
-export default function Navbar() {
+export default function Navbar({ handleSearch }) {
   // const [number, setNumber] = useState(0);
   const [searchResult, setSearchResult] = useState('');
   const basket = useSelector((state) => state.basket);
@@ -61,10 +61,10 @@ export default function Navbar() {
   //   setNumber(basket.length);
   // };
   const handleSearch = () => {
-    const searchen = data.data.filter((item) =>
+    const searched = data.data.filter((item) =>
       item.title.includes(searchResult)
     );
-    console.log(searchen);
+    console.log(searched);
   };
 
   return (
@@ -83,7 +83,6 @@ export default function Navbar() {
           valueInput={searchResult}
           onChangeInput={(e) => {
             setSearchResult(e.target.value);
-            handleSearch();
           }}
         />
       </SearchBarInput>
