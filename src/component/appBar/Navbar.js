@@ -52,7 +52,7 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
     width: '40vw',
   },
 }));
-export default function Navbar({ handleSearch }) {
+export default function Navbar() {
   // const [number, setNumber] = useState(0);
   const [searchResult, setSearchResult] = useState('');
   const basket = useSelector((state) => state.basket);
