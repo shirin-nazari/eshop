@@ -60,12 +60,10 @@ export default function Navbar() {
   // const onClick = () => {
   //   setNumber(basket.length);
   // };
-  const handleSearch = () => {
-    const searched = data.data.filter((item) =>
-      item.title.includes(searchResult)
-    );
-    console.log(searched);
-  };
+  // const handleSearch = () => {
+
+  //   console.log(searched);
+  // };
 
   return (
     <AppBarStyle>
