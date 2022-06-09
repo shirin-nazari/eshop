@@ -1,11 +1,12 @@
 import { AppBar, Box, Typography } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { searchHandle } from '../../redux/searchCard/seachSlice';
 
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
@@ -55,6 +56,7 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
 export default function Navbar() {
   // const [number, setNumber] = useState(0);
   const [searchResult, setSearchResult] = useState('');
+  const dispatch = useDispatch();
   const basket = useSelector((state) => state.basket);
   const data = useSelector((state) => state.data);
   // const onClick = () => {
@@ -64,7 +66,9 @@ export default function Navbar() {
 
   //   console.log(searched);
   // };
-
+  useEffect(() => {
+    dispatch(searchHandle(searchResult));
+  });
   return (
     <AppBarStyle>
       <Link to="/" style={{ textDecoration: 'none' }}>

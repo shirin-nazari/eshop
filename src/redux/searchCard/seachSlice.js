@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import dataSlice from '../data/dataSlice';
 
 const Searched = createSlice({
   name: 'search',
-  initialState: [],
+  initialState: dataSlice,
   reducers: {
     searchHandle(state, { payload }) {
-      const filterData = state.data.filter((item) =>
-        item.title.includes(payload)
-      );
-      state.push(filterData);
+      state.data.filter((item) => item.includes(payload));
     },
   },
 });
