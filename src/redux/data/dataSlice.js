@@ -20,9 +20,6 @@ const dataSlice = createSlice({
     status: null,
   },
   extraReducers: {
-    searchHandle(state, { payload }) {
-      state.data.filter((item) => item.title.includes(payload));
-    },
     [fetchData.fulfilled]: (state, { payload }) => {
       state.data = payload;
       state.status = 'success (:';
