@@ -22,12 +22,15 @@ const dataSlice = createSlice({
   },
   reducers: {
     searchHandle(state, { payload }) {
-      state.data.filter((item) => item.includes(payload));
+      // state.data.filter((item) => item.includes(payload));
+      state.searchData = [];
+      state.searchData.push(payload);
     },
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, { payload }) => {
       state.data = payload;
+      state.searchData = payload;
       state.status = 'success (:';
     },
     [fetchData.pending]: (state) => {
@@ -38,5 +41,5 @@ const dataSlice = createSlice({
     },
   },
 });
-
+export const { searchHandle } = dataSlice.actions;
 export default dataSlice.reducer;

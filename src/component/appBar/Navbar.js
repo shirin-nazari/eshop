@@ -6,8 +6,8 @@ import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { searchHandle } from '../../redux/searchCard/seachSlice';
-
+// import { searchHandle } from '../../redux/searchCard/seachSlice';
+import { searchHandle } from '../../redux/data/dataSlice';
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
   display: 'flex',
@@ -62,13 +62,17 @@ export default function Navbar() {
   // const onClick = () => {
   //   setNumber(basket.length);
   // };
-  // const handleSearch = () => {
-
-  //   console.log(searched);
-  // };
-  useEffect(() => {
-    dispatch(searchHandle(searchResult));
-  });
+  const handleSearch = () => {
+    if (searchResult) {
+      const matchedData = data.data.filter((item) =>
+        item.title.toLowerCase().includes(searchResult.toLowerCase())
+      );
+      dispatch(searchHandle(matchedData));
+    }
+  };
+  // useEffect(() => {
+  //   dispatch(searchHandle(searchResult));
+  // });
   return (
     <AppBarStyle>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -85,6 +89,7 @@ export default function Navbar() {
           valueInput={searchResult}
           onChangeInput={(e) => {
             setSearchResult(e.target.value);
+            handleSearch();
           }}
         />
       </SearchBarInput>
