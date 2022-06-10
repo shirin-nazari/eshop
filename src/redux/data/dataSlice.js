@@ -1,21 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+// import dataFile from '../../data.json';
 export const fetchData = createAsyncThunk('data', async () => {
   // return await fetch('https://fakestoreapi.com/products/')
-  return await fetch('../../data.json')
-    .then((res) => res.json())
-    .catch((err) => console.log('Error ::', err));
+  //   .then((res) => res.json())
+  //   .catch((err) => console.log('Error ::', err));
+  // return await fetch(dataFile)
+  return await fetch('data.json')
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
+    .catch((err) => console.log(err));
 });
 
 const dataSlice = createSlice({
   name: 'data',
   initialState: {
     data: [],
+    searchData: [],
     status: null,
+  },
+  reducers: {
+    searchHandle(state, { payload }) {
+      // state.data.filter((item) => item.includes(payload));
+      state.searchData = [];
+      state.searchData.push(payload);
+    },
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, { payload }) => {
       state.data = payload;
+      state.searchData = payload;
       state.status = 'success (:';
     },
     [fetchData.pending]: (state) => {
@@ -26,5 +41,5 @@ const dataSlice = createSlice({
     },
   },
 });
-
+export const { searchHandle } = dataSlice.actions;
 export default dataSlice.reducer;

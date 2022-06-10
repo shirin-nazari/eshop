@@ -21,18 +21,20 @@ function Product() {
   return (
     <>
       <BoxCard>
-        {data.map(({ category, id, description, image, price, rating }) => {
-          return (
-            <Card
-              key={id}
-              imageSrc={image}
-              title={category}
-              textDescription={description}
-              price={price}
-              rating={rating.rate}
-            />
-          );
-        })}
+        {data?.data.map(
+          ({ category, id, description, image, price, rating }) => {
+            return (
+              <Card
+                key={id}
+                imageSrc={image}
+                title={category}
+                textDescription={description}
+                price={price}
+                rating={rating.rate}
+              />
+            );
+          }
+        )}
       </BoxCard>
     </>
   );

@@ -1,12 +1,13 @@
 import { AppBar, Box, Typography } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import SearchBar from '../searchBar/Search';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+// import { searchHandle } from '../../redux/searchCard/seachSlice';
+import { searchHandle } from '../../redux/data/dataSlice';
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: '#383838',
   display: 'flex',
@@ -54,10 +55,24 @@ const SearchBarInput = styled(Box)(({ theme }) => ({
 }));
 export default function Navbar() {
   // const [number, setNumber] = useState(0);
+  const [searchResult, setSearchResult] = useState('');
+  const dispatch = useDispatch();
   const basket = useSelector((state) => state.basket);
+  const data = useSelector((state) => state.data);
   // const onClick = () => {
   //   setNumber(basket.length);
   // };
+  const handleSearch = () => {
+    if (searchResult) {
+      const matchedData = data.data.filter((item) =>
+        item.title.toLowerCase().includes(searchResult.toLowerCase())
+      );
+      dispatch(searchHandle(matchedData));
+    }
+  };
+  // useEffect(() => {
+  //   dispatch(searchHandle(searchResult));
+  // });
   return (
     <AppBarStyle>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -70,7 +85,13 @@ export default function Navbar() {
       </Link>
 
       <SearchBarInput className="searchBar">
-        <SearchBar />
+        <SearchBar
+          valueInput={searchResult}
+          onChangeInput={(e) => {
+            setSearchResult(e.target.value);
+            handleSearch();
+          }}
+        />
       </SearchBarInput>
 
       <NavbarItem className="nav" component="nav">

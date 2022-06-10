@@ -25,7 +25,7 @@ function MultiActionAreaCard({
       <CardActionArea>
         <CardMedia
           component="img"
-          height="200vh"
+          height="250vh"
           width="50px"
           image={imageSrc}
           alt="green iguana"
