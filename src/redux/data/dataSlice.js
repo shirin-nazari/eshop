@@ -17,7 +17,13 @@ const dataSlice = createSlice({
   name: 'data',
   initialState: {
     data: [],
+    searchData: [],
     status: null,
+  },
+  reducers: {
+    searchHandle(state, { payload }) {
+      state.data.filter((item) => item.includes(payload));
+    },
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, { payload }) => {
