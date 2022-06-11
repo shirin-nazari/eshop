@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Card from '../component/card/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../redux/data/dataSlice';
+import { searchHandle } from '../redux/data/dataSlice';
 const BoxCard = styled(Box)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
@@ -14,6 +15,7 @@ const BoxCard = styled(Box)(({ theme }) => ({
 function Product() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
+  const searched = useSelector((state) => state.data);
   console.log(data);
   useEffect(() => {
     dispatch(fetchData());
@@ -21,7 +23,24 @@ function Product() {
   return (
     <>
       <BoxCard>
-        {data?.data.map(
+        {searched ===
+          null?.data.map(
+            ({ category, id, description, image, price, rating }) => {
+              console.log(category, id, price);
+              return (
+                <Card
+                  key={id}
+                  imageSrc={image}
+                  title={category}
+                  textDescription={description}
+                  price={price}
+                  rating={rating.rate}
+                />
+              );
+            }
+          )}
+        :
+        {data.data.map(
           ({ category, id, description, image, price, rating }) => {
             return (
               <Card
@@ -34,7 +53,7 @@ function Product() {
               />
             );
           }
-        )}
+        )}{' '}
       </BoxCard>
     </>
   );
