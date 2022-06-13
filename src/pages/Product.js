@@ -15,42 +15,29 @@ const BoxCard = styled(Box)(({ theme }) => ({
 function Product() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
-  const searched = useSelector((state) => state.data);
+  const searched = useSelector((state) => state.data.searchData);
+  console.log('search :', searched);
   useEffect(() => {
     dispatch(fetchData());
   }, []);
   return (
     <>
       <BoxCard>
-        {searched.length > 1
-          ? searched.data.map(
-              ({ category, id, description, image, price, rating }) => {
-                return (
-                  <Card
-                    key={id}
-                    imageSrc={image}
-                    title={category}
-                    textDescription={description}
-                    price={price}
-                    rating={rating.rate}
-                  />
-                );
-              }
-            )
-          : data.data.map(
-              ({ category, id, description, image, price, rating }) => {
-                return (
-                  <Card
-                    key={id}
-                    imageSrc={image}
-                    title={category}
-                    textDescription={description}
-                    price={price}
-                    rating={rating.rate}
-                  />
-                );
-              }
-            )}
+        {searched?.map(
+          ({ category, title, id, description, image, price, rating }) => {
+            return (
+              <Card
+                key={id}
+                imageSrc={image}
+                title={title}
+                textDescription={description}
+                price={price}
+                category={category}
+                rating={2}
+              />
+            );
+          }
+        )}
       </BoxCard>
     </>
   );

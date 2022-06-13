@@ -59,9 +59,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const basket = useSelector((state) => state.basket);
   const data = useSelector((state) => state.data);
-  // const onClick = () => {
-  //   setNumber(basket.length);
-  // };
+
   const handleSearch = () => {
     if (searchResult) {
       const matchedData = data.data.filter((item) =>
