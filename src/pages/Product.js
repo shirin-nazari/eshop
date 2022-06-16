@@ -19,6 +19,7 @@ function Product() {
   console.log('search :', searched);
   useEffect(() => {
     dispatch(fetchData());
+    dispatch(searchHandle);
   }, []);
   return (
     <>
