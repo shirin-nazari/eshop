@@ -18,6 +18,7 @@ function MultiActionAreaCard({
   id,
   rating,
   price,
+  category,
 }) {
   const dispatch = useDispatch();
   return (
@@ -28,9 +29,12 @@ function MultiActionAreaCard({
           height="250vh"
           width="50px"
           image={imageSrc}
-          alt="green iguana"
+          alt={title}
         />
         <CardContent>
+          <Typography gutterBottom variant="h6" component="div">
+            {category}
+          </Typography>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
